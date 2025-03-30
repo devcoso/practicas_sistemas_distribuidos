@@ -14,3 +14,13 @@ En está práctica realice un TCP con HTTP Básico en Java, funciona establecien
 Esta práctica emplea un método de sincronización para garantizar la consistencia de los archivos incluso cuando se utilizan múltiples servidores, donde la concurrencia puede afectar la integridad de los datos. Gracias a este mecanismo, se previenen conflictos y se asegura que todas las operaciones realizadas en los distintos servidores mantengan un estado coherente, evitando problemas como accesos simultáneos inconsistentes, pérdida de datos o desincronización entre copias de los archivos.
 ## Práctica 5 - Objetos Distribuidos.
 En esta práctica, se implementó un sistema de invocación de métodos remotos (RMI) en Java para la multiplicación de matrices. RMI nos permite que un programa en una máquina llame a métodos de un objeto que reside en otra máquina, facilitando la comunicación distribuida.
+## Práctica 6 - Servicios Web
+En esta práctica, se desarrolló una API RESTful sencilla para la gestión de tareas (tasks) utilizando Java con Spring Boot. La API permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre las tareas, proporcionando endpoints para interactuar con un sistema de almacenamiento en memoria.
+
+La API incluye las siguientes funcionalidades:
+- **Listar tareas**: Devuelve una lista de todas las tareas almacenadas.
+- **Crear tareas**: Permite agregar nuevas tareas con un título y descripción.
+- **Actualizar tareas**: Permite modificar los detalles de una tarea existente.
+- **Eliminar tareas**: Elimina una tarea específica por su identificador.
+
+Esta práctica introduce conceptos básicos de diseño y desarrollo de servicios web, incluyendo el manejo de solicitudes HTTP, serialización/deserialización de datos en formato JSON y el uso de controladores REST.
