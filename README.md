@@ -24,3 +24,15 @@ La API incluye las siguientes funcionalidades:
 - **Eliminar tareas**: Elimina una tarea específica por su identificador.
 
 Esta práctica introduce conceptos básicos de diseño y desarrollo de servicios web, incluyendo el manejo de solicitudes HTTP, serialización/deserialización de datos en formato JSON y el uso de controladores REST.
+
+## Práctica 7 - Microservicios
+
+En esta práctica, se desarrolló una API RESTful sencilla para la gestión de tareas (tasks) utilizando Java con Spring Boot. La API permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre las tareas, proporcionando endpoints para interactuar con un sistema de almacenamiento en memoria.
+
+Además, se integró un mecanismo básico de autenticación mediante tokens (JWT), lo cual permite proteger los endpoints y garantizar que solo usuarios autenticados puedan acceder a las funcionalidades del sistema.
+
+- **Autenticación de usuarios**: Permite a los usuarios registrarse e iniciar sesión. Al autenticarse correctamente, se les proporciona un token JWT que deben incluir en las solicitudes posteriores para acceder a los recursos protegidos.
+- **Listar tareas**: Devuelve una lista de todas las tareas almacenadas para el usuario autenticado.
+- **Crear tareas**: Permite agregar nuevas tareas con un título y descripción, asociadas al usuario autenticado.
+- **Actualizar tareas**: Permite modificar los detalles de una tarea existente, siempre que pertenezca al usuario que realiza la petición.
+- **Eliminar tareas**: Elimina una tarea específica por su identificador, si está asociada al usuario autenticado.
