@@ -52,11 +52,17 @@ function authenticateToken(req, res, next) {
 app.use(authenticateToken);
 
 // Obtener todas las tareas
-app.get("/tasks", (req, res) => {
-    db.all("SELECT * FROM tasks", [], (err, rows) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json(rows);
-    });
+app.get("/tasks", (req, res) => { 
+    db.all(
+        `SELECT tasks.id, tasks.title, tasks.done, users.username 
+         FROM tasks 
+         INNER JOIN users ON tasks.user_id = users.id`,
+        [],
+        (err, rows) => {
+            if (err) return res.status(500).json({ error: err.message });
+            res.json(rows);
+        }
+    );
 });
 
 // Crear una nueva tarea
@@ -64,9 +70,9 @@ app.post("/tasks", (req, res) => {
     const { title } = req.body;
     if (!title) return res.status(400).json({ error: "Title is required" });
 
-    db.run("INSERT INTO tasks (title) VALUES (?)", [title], function (err) {
+    db.run("INSERT INTO tasks (title, user_id) VALUES (?, ?)", [title, req.user.id], function (err) {
         if (err) return res.status(500).json({ error: err.message });
-        res.json({ id: this.lastID, title, done: false });
+        res.json({ id: this.lastID, title, done: false, username: req.user.username });
     });
 });
 

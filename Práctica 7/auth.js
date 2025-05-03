@@ -38,7 +38,7 @@ app.post("/register", (req, res) => {
         [username, hashedPassword],
         function (err) {
             if (err) return res.status(500).json({ error: err.message });
-            res.json({ message: "User registered successfully" });
+            res.status(201).json({ message: "User registered successfully" });
         }
     );
 });
@@ -58,6 +58,14 @@ app.post("/login", (req, res) => {
     });
 });
 
+app.get("/verify", (req, res) => {
+    const token = req.headers["authorization"].split(" ")[1];
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+        if (err) return res.status(403).json({ error: "Invalid token" });
+        res.json({ message: "Token is valid", user });
+    });
+});
+
 app.listen(PORT, () => {
-    console.log(`Auth server corriendo en http://${HOST}:${PORT}`);
+    console.log(`Auth server running on http://${HOST}:${PORT}`);
 });
