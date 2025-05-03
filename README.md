@@ -36,3 +36,11 @@ Además, se integró un mecanismo básico de autenticación mediante tokens (JWT
 - **Crear tareas**: Permite agregar nuevas tareas con un título y descripción, asociadas al usuario autenticado.
 - **Actualizar tareas**: Permite modificar los detalles de una tarea existente, siempre que pertenezca al usuario que realiza la petición.
 - **Eliminar tareas**: Elimina una tarea específica por su identificador, si está asociada al usuario autenticado.
+
+## Práctica 8 - Progressive Web App
+
+Tasks PWA es una aplicación web progresiva (PWA) centrada en la organización y gestión de tareas personales, desarrollada con tecnologías modernas para garantizar una experiencia rápida, intuitiva y adaptable a cualquier dispositivo. La aplicación emplea React Router DOM para una navegación fluida y sin recargas, lo que permite transiciones rápidas entre vistas sin perder el contexto de uso.
+
+Su diseño responsivo está construido con TailwindCSS, lo que asegura una interfaz limpia, moderna y fácilmente adaptable tanto en móviles como en pantallas de escritorio. A nivel funcional, Tasks PWA se integra con dos APIs principales: Task API para la gestión CRUD de tareas, y Auth API para el manejo seguro de autenticación y autorización de usuarios, permitiendo así sesiones protegidas y personalizadas.
+
+Además, la aplicación cuenta con un Service Worker configurado para cachear todas las respuestas de la red. Esto no solo mejora significativamente los tiempos de carga, sino que también permite el uso offline y una mayor resiliencia ante conexiones inestables. Gracias a estas características, Tasks PWA ofrece una experiencia casi nativa, combinando lo mejor del desarrollo web y móvil.
