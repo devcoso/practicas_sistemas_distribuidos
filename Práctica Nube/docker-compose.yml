@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: todoapp
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "8000:8000"
+    environment:
+      - AUTH_PORT=8000
+      - AUTH_HOST=0.0.0.0
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=password
+      - DB_NAME=todoapp
+      - SECRET_KEY=super-secret-jwt-key-change-this-in-production
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  tasks-service:
+    build: ./tasks-service
+    ports:
+      - "8001:8001"
+    environment:
+      - TASKS_PORT=8001
+      - TASKS_HOST=0.0.0.0
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=password
+      - DB_NAME=todoapp
+      - SECRET_KEY=super-secret-jwt-key-change-this-in-production
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - auth-service
+      - tasks-service
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
